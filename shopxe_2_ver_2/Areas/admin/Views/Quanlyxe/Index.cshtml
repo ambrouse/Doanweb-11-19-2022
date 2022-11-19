@@ -1,0 +1,42 @@
+﻿@model IEnumerable<shopxe_2.Models.sanpham>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/admin/Views/layout/layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" href="~/accect/css/listad.css" />
+    }
+
+<div class="list">
+    <div class="list__item">
+        <form action="/admin/Quanlyxe/Index" >
+            <input type="text" placeholder="nhap ten" name="name" />
+            <button type="submit">tim kiem</button>
+        </form>
+    </div>
+    <div class="list__item">
+        <p>ten</p>
+        <p>loai</p>
+        <p>hang</p>
+        <p></p>
+        <p></p>
+    </div>
+    @foreach (var i in Model)
+    {
+        <div class="list__item">
+            <p>@i.ten</p>
+            <p>@i.loai1.ten</p>
+            <p>@i.hang1.ten</p>
+            <a href="~/admin/Quanlyxe/Update?id=@i.id">Sửa</a>
+            <a href="#" onclick="deleteid(@i.id)">Xóa</a>
+        </div>
+    }
+</div>
+<script>
+    var deleteid = (id) => {
+        if (confirm("Xóa là mất đó nha") == true) {
+            location.href ="/admin/Quanlyxe/Delete?id="+id
+        }
+    }
+</script>
+

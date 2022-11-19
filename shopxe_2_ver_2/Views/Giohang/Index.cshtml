@@ -1,0 +1,99 @@
+﻿@model IEnumerable<shopxe_2.Models.chitietdonhang>
+
+@{
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
+    var x = (shopxe_2.Models.user)HttpContext.Current.Session["user"];
+    ViewBag.title = "Thảo my, Giỏ hàng của " + x.ten;
+    Layout = "~/Views/layout/layout.cshtml";
+    int z = 0;
+}
+@section css{
+    <link rel="stylesheet" href="~/accect/css/StyleSheet1.css">
+    <link rel="stylesheet" href="~/accect/css/cssreset.css" />
+    <link rel="stylesheet" href="~/accect/css/giohang.css" />
+}
+@section js{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+}
+<div class="cart">
+    <div class="cart__title">
+        <p>Giỏ hàng</p>
+    </div>
+    <div class="cart__item-th">
+        <div class="img">
+            <p>Sản phẩm</p>
+        </div>
+        <div class="name">
+            <p>Tên</p>
+        </div>
+        <div class="amount">
+            <p>Số lượng</p>
+        </div>
+        <div class="price">
+            <p>Đơn giá</p>
+        </div>
+        <div class="delete">
+            <p>Xóa</p>
+        </div>
+    </div>
+    <form action="/Mail/index" method="post">
+        @foreach (var i in Model.Where(c => c.iddonhang == x.id).ToList())
+        {
+            <input style="visibility:hidden " name="id" value="@x.id" />
+            <div class="cart__item-td">
+                <div class="img">
+                    <img src="@db.sanphams.Find(i.idsanpham).imgurl_1" alt="">
+                </div>
+                <div class="name">
+                    <p>@i.ten</p>
+                </div>
+                <div class="amount">
+                    @{z++;}
+                    <input type="number" placeholder="1" value="1" name="soluong" id="soluong_@z" onchange=@Html.Raw("check_"+z+"()")>
+
+                </div>
+                <div class="price">
+                    <p>@db.sanphams.Find(i.idsanpham).gia</p>
+                </div>
+                <div class="delete">
+                    <a href="~/Giohang/Delete/?id=@i.id">&#8709;</a>
+                </div>
+            </div>
+        }
+        <button class="cart__button" onclick="thongbao()" type="submit">Đặt hàng</button>
+    </form>
+    <hr />
+    <h3 style="color:red;">NOTE : Quý khách có thể thêm số lượng sản phẩm tại giỏ hàng</h3>
+</div>
+@if (Model.Count() > 0)
+{
+    foreach (var i in Model.Where(c => c.iddonhang == x.id).ToList())
+    {
+        <script>
+              var check_@z = () => {
+                  if (document.getElementById("soluong_@z").value <= 0) {
+                      document.getElementById("soluong_@z").value = 1;
+                      alert("Xin chào @x.ten \nSố lượng phải lơn hơn 0 có vẻ bạn bị trược tay")
+                  }
+              }
+        </script>
+        z--;
+    }
+    <script>
+    var thongbao = () => {
+            alert(" Xin chào @x.ten \nChúng tôi sẽ gửi mail chi tiết đơn hàng đến bạn bạn vui lòng kiểm tra lại mail\nChúng tôi sẽ liên hệ với bạn qua số điện thoại để trao đổi địa chỉ và xác nhận đơn hàng")
+        location.href = "/Giohang/index"
+    }
+    </script>
+
+}
+else
+{
+    <script>
+    var thongbao = () => {
+        alert("Quý khách @x.ten không có đơn hàng nào")
+        location.href = "/Giohang/index"
+    }
+    </script>
+}
