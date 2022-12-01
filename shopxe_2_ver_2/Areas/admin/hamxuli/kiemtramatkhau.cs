@@ -9,8 +9,8 @@ namespace shopxe_2.Areas.admin.hamxuli
     {
         Database db = new Database();
         public Boolean kiemtra(String name,String pass) {
-            var z = db.admins.Find(1);
-            var z_2 = db.admins.Find(2);
+            var z = db.admins.FirstOrDefault(c=>c.id ==1);
+            var z_2 = db.admins.FirstOrDefault(c => c.id == 1);
             if (z.ten != name && z_2.ten != name)
             {
                 return false;
