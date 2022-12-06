@@ -1,19 +1,23 @@
 ﻿@model IEnumerable<shopxe_2.Models.sanpham>
 @{
-    ViewBag.Title = "cửa hàng thảo my, tìm kiếm xe "+ViewBag.timkiem;
+    ViewBag.Title = "cửa hàng thảo my, tìm kiếm xe " + ViewBag.timkiem;
     ViewBag.keywords = "Cửa hàng thảo my, tìm kiếm xe";
-    ViewBag.description = "Tìm kiếm xe "+ViewBag.timkiem;
+    ViewBag.description = "Tìm kiếm xe " + ViewBag.timkiem;
     Layout = "~/Views/layout/layout.cshtml";
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
 }
 @section css{
+    <link rel="stylesheet" href="~/accect/css/StyleSheet1.css">
     <link rel="stylesheet" href="~/accect/css/cssreset.css" />
+
     <link rel="stylesheet" href="~/accect/css/cardsanpham.css" />
 }
+
 <div class="card"><h1>Kết quả tìm kiếm sản phẩm</h1></div>
 <div class="card">
     @if (Model.Count() > 0)
     {
-        
+
         foreach (var i in Model)
         {
             <div class="card__item">
@@ -25,17 +29,21 @@
                     <a href="~/Chitiet/?id=@i.id"></a>
                 </div>
                 <div class="gia">
-                    <p>@i.loai1.ten</p>
+                    <p>@i.gia</p>
                 </div>
-                <div class="gia">
-                    <p>@i.hang1.ten</p>
+                <div class="danhgia">
+                    <p>@i.danhgia/10&#10025;</p>
                 </div>
             </div>
         }
     }
-else
-            {
-                <p>không tìm thấy sản phẩm</p>
-            }
+    else
+    {
+        <p>không tìm thấy sản phẩm</p>
+    }
 </div>
 
+@section js{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+}

@@ -4,13 +4,19 @@
     ViewBag.keywords = "Danh sách xe cho thuê mới nhất";
     ViewBag.description = "Cửa hàng thảo my, danh sách xe mới nhất đang cho thuê,";
     Layout = "~/Views/layout/layout.cshtml";
+    int? sao = 0;
+    int dem = 0;
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
 }
 @section css{
-    <link rel="stylesheet" href="~/accect/css/cssreset.css"/>
-    <link rel="stylesheet" href="~/accect/css/cardsanpham.css"/>
-    }
+    <link rel="stylesheet" href="~/accect/css/StyleSheet1.css">
+    <link rel="stylesheet" href="~/accect/css/cssreset.css" />
+    <link rel="stylesheet" href="~/accect/css/cardsanpham.css" />
+    
+}
 <div class="card">
-    @foreach (var i in Model) { 
+    @foreach (var i in Model)
+    {
         <div class="card__item">
             <div class="img">
                 <img src="@i.imgurl_1" alt="">
@@ -20,11 +26,25 @@
                 <a href="~/Chitiet/?id=@i.id"></a>
             </div>
             <div class="gia">
-                <p>@i.loai1.ten</p>
+                <p>@i.gia</p>
             </div>
-            <div class="gia">
-                <p>@i.hang1.ten</p>
+            <div class="danhgia">
+                <p>@i.danhgia/10&#10025;</p>
             </div>
         </div>
-}
+    }
+    
 </div>
+<div style="position:relative ;margin-bottom:100px;max-width:1040px;margin-top:70px;left:50%;transform:translateX(-50%);">
+    <div style="display:flex;flex-wrap:wrap;">
+        @for (int i = 1; i <= (db.sanphams.Count() / 9) + 1; i++)
+        {
+            <div><a style="padding:5px 10px;background-color:black;color:white;font-size:20px;" href="~/Danhsachxe/Danhsachxemoinhat?page=@i" class="btn-dark">@i</a></div>
+        }
+    </div>
+</div>
+
+@section js{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+}

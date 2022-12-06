@@ -215,6 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\admin.cs" />
+    <Compile Include="Models\chat.cs" />
     <Compile Include="Models\chitietdonhang.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\hamxuly\kiemtradangnhap.cs" />

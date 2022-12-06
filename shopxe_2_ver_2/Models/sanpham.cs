@@ -33,8 +33,7 @@ namespace shopxe_2.Models
         [StringLength(250)]
         public string imgurl_2 { get; set; }
 
-        [StringLength(250)]
-        public string imgurl_3 { get; set; }
+        public int? danhgia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chitietdonhang> chitietdonhangs { get; set; }

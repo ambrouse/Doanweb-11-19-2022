@@ -1,13 +1,15 @@
 ﻿@model shopxe_2.Models.sanpham
 @{
-    ViewBag.Title = "Chi tiết xe "+Model.ten;
-    ViewBag.keywords = "Thuê xe, Chi tiết xe "+ Model.ten;
-    ViewBag.description = "Cho thuê xe "+Model.ten+"uy tín, giá cả phải chăng, làm việc trực tiếp tại cửa hàng";
+    ViewBag.Title = "Chi tiết xe " + Model.ten;
+    ViewBag.keywords = "Thuê xe, Chi tiết xe " + Model.ten;
+    ViewBag.description = "Cho thuê xe " + Model.ten + "uy tín, giá cả phải chăng, làm việc trực tiếp tại cửa hàng";
     Layout = "~/Views/layout/layout.cshtml";
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
+    shopxe_2.Models.user u = (shopxe_2.Models.user)HttpContext.Current.Session["user"];
 }
 
-<div class="container"style="position:relative;top:50px;">
-    <h2>Hình ảnh của xe    </h2>
+<div class="container">
+    <h2 style="visibility:hidden;z-index:-1;">Hình ảnh của xe</h2>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -57,47 +59,61 @@
         <!-- nut thue xe -->
         <div>
             <div class="col-sm-6">
-                <button onclick="nutthue()" class="thuexe">Thuê xe</button>
-                <button onclick="nutmua()" class="muaxe">Mua xe</button>
+                <button class="thuexe"><a href="~/Giohang/Themsanpham/?id=@Model.id">Thêm vào giỏ hàng</a></button>
             </div>
         </div>
     </div>
+    <hr />
+    <div class="chat">
+        <form action="/Chitiet/index" method="post">
+            <input style="display:none;" type="number" value="@Model.id" name="id"/>
+            <span>Hãy đánh giá sản phẩm của chúng tôi trên thang điểm 10 :</span>
+            <input type="number" value="10" onchange="nhap()" id="danhgia"name="danhgia"/>
+            <span>Hãy gửi vài lời về sản phẩm của chúng toi nhé :</span>
+            <input type="text" value="text" id="chatvalue" name="chat" />
+            <button onclick="checkchat()">send</button>
+
+        </form>
+    </div>
+    <div class="chat" id="chat_2">
+        @foreach (var i in db.chats.Where(c => c.idsanpham == Model.id).ToList().OrderByDescending(c => c.id))
+        {
+            <div class="chat_item">
+                <span class="item_name">@i.tenuser</span>
+                <span class="item_danhgia">(vote : @i.danhgia/ 10 </span>
+                <span class="item_icon">&#10025;</span>
+                <span class="item_danhgia">)</span>
+                    <br />
+                    <span class="item_text"> - @i.chat1</span>
+            </div>
+        }
+    </div>
+
 </div>
 <br>
 <hr>
 
 <!-- thue xe box -->
-<div class="box" id="box">
-    <a href="~/Chitiet/?id=@Model.id">X</a>
-    <b><h2> Thông tin </h2></b>
-    <p id=lienhe>Để thuê xe ưng với ý của mình hãy liên hệ</p>
-    <p id=sodt>0792260788 <br> 0389177176</p>
-    <b><h3> Địa chỉ cửa hàng </h3></b>
-    <p> Số 202, Đường Ngô Quyền, Phường 6, Tp.Đà Lạt, Lâm Đồng </p>
-    <b><h3> (Note) </h3></b>
-    <p> Xe máy Thảo My khuyến khích khách hàng nên đến trực tiếp cửa hàng để tận tay mình lựa chọn và trải nghiệm xe</p>
-</div>
-<!-- mua xe box -->
-<div class="box" id="box2">
-    <a href="~/Chitiet/?id=@Model.id">X</a>
-    <b><h2> Thông tin </h2></b>
-    <p id=lienhe>Tên Xe: @Model.ten</p>
-    <p>Hãng xe: @Model.hang1.ten</p>
-    <p>Liên hệ với chúng tôi để được tư vấn về <b> giá cả </b></p>
-    <p id=sodt>0792260788 <br> 0389177176</p>
-    <b><h3> Địa chỉ cửa hàng </h3></b>
-    <p> Số 202, Đường Ngô Quyền, Phường 6, Tp.Đà Lạt, Lâm Đồng </p>
-    <b><h3> (Note) </h3></b>
-    <p> Xe máy Thảo My khuyến khích khách hàng nên đến trực tiếp cửa hàng để tận tay mình lựa chọn và trải nghiệm xe</p>
-</div>
-@section js{
-    <script type="text/javaScript" src="~/accect/js/main_chiTiet.js"></script>
 
+@section js{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        var nhap = () => {
+            if (document.getElementById("danhgia").value > 10 || document.getElementById("danhgia").value < 0) {
+                alert("Bạn vui lòng nhập lại đánh giá");
+            }
+        }
+        var checkchat = () => {
+            var x = document.getElementById("chatvalue").value;
+            if (!x || x.length > 250) {
+                alert("Đừng bỏ trống và đừng qua 250 kí tự nhé");
+            }
+        }
+    </script>
 }
 
 @section css{
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/accect/css/StyleSheet1.css">
     <link rel="stylesheet" href="~/accect/css/main_chiTiet.css" />
 }

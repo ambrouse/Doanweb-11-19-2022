@@ -18,6 +18,7 @@ namespace shopxe_2.Controllers
         public ActionResult Index(user model)
         {
             Database db = new Database();
+            
             if (new kiemtradangnhap().kiemtra(model.email) == true) {
                 if (String.IsNullOrEmpty(model.ten) && String.IsNullOrEmpty(model.sodt.ToString()))
                 {
@@ -25,15 +26,30 @@ namespace shopxe_2.Controllers
                     return RedirectToAction("index", "Danhsachxe");
                 }
                 else {
-                    if (String.IsNullOrEmpty(model.email) || String.IsNullOrEmpty(model.ten))
+
+                    if (String.IsNullOrEmpty(model.ten))
                     {
+
                         ViewBag.err = "Không được để trống dữ liệu";
                         return View();
+                    } else if(String.IsNullOrEmpty(model.email)){
+                        foreach (var i in db.admins)
+                        {
+                            if (i.ten.ToLower() == model.ten.ToLower())
+                            {
+                                if (i.pass == model.sodt.ToString())
+                                {
+                                    Session["ad"] = i;
+                                    return RedirectToAction("Index", "Quanlyxe", new { area = "admin" });
+                                }
+                            }
+                        }
                     }
+                    else
                     if(model.ten.Length > 10){
                         ViewBag.err = "Tên tối đa 10 kí tự";
                         return View();
-                    }
+                    }else
                     if (model.sodt.ToString().Length< 9|| model.sodt.ToString().Length>=10)
                     {
                         ViewBag.err = "Số điện thoại sai định dạng";
@@ -58,9 +74,9 @@ namespace shopxe_2.Controllers
                 ViewBag.err = "Tên tối đa 10 kí tự";
                 return View();
             }
-            if (model.sodt.ToString().Length < 10 || model.sodt.ToString().Length >= 11)
+            if (model.sodt.ToString().Length < 9 || model.sodt.ToString().Length >= 10)
             {
-                ViewBag.err = "Không được để trống dữ liệu";
+                ViewBag.err = "so dien thoai sai dinh dang";
                 return View();
             }
 

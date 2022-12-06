@@ -85,7 +85,7 @@ namespace shopxe_2.Areas.admin.Controllers
                 ViewBag.err = "Nếu muốn đổi ảnh thì phải đổi cả hai";
                 return View();
             }
-            System.IO.File.Delete(Server.MapPath(update.imgurl_1)); System.IO.File.Delete(Server.MapPath(update.imgurl_2)); System.IO.File.Delete(Server.MapPath(update.imgurl_3));
+            System.IO.File.Delete(Server.MapPath(update.imgurl_1)); System.IO.File.Delete(Server.MapPath(update.imgurl_2));
             var chuyendoi = new chuyendoi();
             String x = Server.MapPath("/imgxe/");
                 String y_1 = x + chuyendoi.convertToUnSign3(file_1.FileName.ToLower());

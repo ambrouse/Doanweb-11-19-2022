@@ -13,6 +13,7 @@ namespace shopxe_2.Models
         }
 
         public virtual DbSet<admin> admins { get; set; }
+        public virtual DbSet<chat> chats { get; set; }
         public virtual DbSet<chitietdonhang> chitietdonhangs { get; set; }
         public virtual DbSet<hang> hangs { get; set; }
         public virtual DbSet<loai> loais { get; set; }

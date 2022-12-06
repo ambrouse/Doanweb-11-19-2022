@@ -21,9 +21,9 @@ namespace shopxe_2.Areas.admin.Controllers
         {
             Database db = new Database();
             var check = new kiemtramatkhau().kiemtra(name, pass);
-            if (check == true)
+            if (check != -1)
             {
-                Session["ad"] = db.admins.Find(1);
+                Session["ad"] = db.admins.Find(check);
                 return RedirectToAction("Index", "Quanlyxe");
             }
             else {

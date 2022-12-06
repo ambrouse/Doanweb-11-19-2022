@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
 using shopxe_2.Models;
@@ -8,20 +9,26 @@ namespace shopxe_2.Areas.admin.hamxuli
     public class kiemtramatkhau
     {
         Database db = new Database();
-        public Boolean kiemtra(String name,String pass) {
-            var z = db.admins.FirstOrDefault(c=>c.id ==1);
-            var z_2 = db.admins.FirstOrDefault(c => c.id == 1);
-            if (z.ten != name && z_2.ten != name)
+        public int kiemtra(String name,String pass) {
+            foreach (var i in db.admins)
             {
-                return false;
+                if (i.ten.ToLower() == name.ToLower())
+                {
+                    if (i.pass == pass)
+                    {
+                        return i.id;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
             }
-            else if (z.pass != pass && z_2.pass != pass) {
-                return false;
-            }
-            else { return true; }
-            
-                
-           
+            return -1;
         }
     }
 }
