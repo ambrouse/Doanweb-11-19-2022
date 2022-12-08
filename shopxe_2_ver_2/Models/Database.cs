@@ -17,6 +17,8 @@ namespace shopxe_2.Models
         public virtual DbSet<chitietdonhang> chitietdonhangs { get; set; }
         public virtual DbSet<hang> hangs { get; set; }
         public virtual DbSet<loai> loais { get; set; }
+        public virtual DbSet<phanquyen> phanquyens { get; set; }
+        public virtual DbSet<quyen> quyens { get; set; }
         public virtual DbSet<sanpham> sanphams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }

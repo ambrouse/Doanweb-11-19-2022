@@ -14,7 +14,7 @@ namespace shopxe_2.Areas.admin.Controllers
     public class QuanlyxeController : Controller
     {
         // GET: admin/Quanlydulieu
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id =1,id_2 =5,id_3 =6,id_4 =7,id_5 =8)]
         public ActionResult Index(String name)
         {
             Database db = new Database();
@@ -23,12 +23,11 @@ namespace shopxe_2.Areas.admin.Controllers
             }
             return View(db.sanphams.Where(c => c.ten.ToLower().Contains(name.ToLower())).ToList());
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id =5,id_2 =4,id_3 =8,id_4 =10,id_5 =11)]
         public ActionResult Them() {
             return View(new sanpham());
         }
         [HttpPost]
-        [kiemtradangnhap]
         public ActionResult Them(sanpham model, HttpPostedFileBase file_1, HttpPostedFileBase file_2) {
             Database db = new Database();
             if (file_1 == null || file_2 == null)
@@ -56,14 +55,13 @@ namespace shopxe_2.Areas.admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id =5,id_2 =2,id_3 =7,id_4 =9,id_5 =11)]
         public ActionResult Update(int id) {
             Database db = new Database();
             var update = db.sanphams.Find(id);
             return View(update);
         }
         [HttpPost]
-        [kiemtradangnhap()]
         public ActionResult Update(sanpham model, HttpPostedFileBase file_1, HttpPostedFileBase file_2)
         {
             Database db = new Database(); var update = db.sanphams.Find(model.id);
@@ -101,7 +99,7 @@ namespace shopxe_2.Areas.admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id =5,id_2 =3,id_3 =6,id_4 =9,id_5 =10)]
         public ActionResult Delete(int id) {
             Database db = new Database(); var delete = db.sanphams.Find(id);
             System.IO.File.Delete(Server.MapPath(delete.imgurl_1)); System.IO.File.Delete(Server.MapPath(delete.imgurl_2));

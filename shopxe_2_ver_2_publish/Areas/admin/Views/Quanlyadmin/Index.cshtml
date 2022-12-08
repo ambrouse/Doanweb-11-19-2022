@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<shopxe_2.Models.admin>
+@{
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
+    ViewBag.Title = "Danh sách hãng xe";
+    Layout = "~/Areas/admin/Views/layout/layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" href="~/accect/css/listad.css" />
+}
+<div class="list">
+    <div class="list__item">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div><div class="list__item">
+        <p>Id</p>
+        <p>Tên</p>
+        <p>pass</p>
+        <p>Sửa</p>
+        <p>Xóa</p>
+        <p>quyền</p>
+    </div>
+    @foreach (var i in Model)
+    {
+        <div class="list__item">
+            <p>@i.id</p>
+            <p>@i.ten</p>
+            <p>@i.pass</p>
+            <a href="~/admin/Quanlyadmin/Capnhat?id=@i.id">Sửa</a>
+            <a href="#" onclick="deleteid(@i.id)">Xóa</a>
+            <p>@foreach(var item in db.phanquyens.Where(c => c.iduser == i.id)) {
+                <span>@item.idquyen</span>
+            }</p>
+        </div>
+    }
+</div>
+<script>
+    var deleteid = (id) => {
+        if (confirm("Xóa là mất đó nha") == true) { location.href = "/admin/Quanlyadmin/Xoa?id=" + id }
+    }
+</script>

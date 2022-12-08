@@ -12,13 +12,13 @@ namespace shopxe_2.Areas.admin.Controllers
     public class QuanlyloaiController : Controller
     {
         // GET: admin/Quanlyloai
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id = 1, id_2 = 5, id_3 = 6, id_4 = 7, id_5 = 8)]
         public ActionResult Index(string name)
         {
             Database db = new Database();
                 return View(db.loais.ToList());
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id = 5, id_2 = 4, id_3 = 8, id_4 = 10, id_5 = 11)]
         public ActionResult Them() {
             return View();
         }
@@ -37,7 +37,7 @@ namespace shopxe_2.Areas.admin.Controllers
             }
             return RedirectToAction("Index");
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id = 5, id_2 = 2, id_3 = 7, id_4 = 9, id_5 = 11)]
         public ActionResult Capnhat(int id)
         {
             return View(new maping_loai().chitiet(id));
@@ -60,7 +60,7 @@ namespace shopxe_2.Areas.admin.Controllers
             }
             return RedirectToAction("Index");
         }
-        [kiemtradangnhap()]
+        [kiemtradangnhap(id = 5, id_2 = 3, id_3 = 6, id_4 = 9, id_5 = 10)]
         public ActionResult Xoa(int id) {
             var l = new maping_loai();
             if (l.xoa(id) == -1)

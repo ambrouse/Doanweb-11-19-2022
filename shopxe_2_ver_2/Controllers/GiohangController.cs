@@ -46,7 +46,17 @@ namespace shopxe_2.Controllers
 
             db.chitietdonhangs.Add(model);
             db.SaveChanges();
-            return RedirectToRoute(new { controller = "Danhsachxe", action = "index"}); ;
+            return RedirectToAction("index");
+        }
+        public ActionResult update(int id,int soluong) {
+            Database db = new Database();
+            if (soluong <= 0) {
+                return RedirectToAction("index");
+            }
+            var update = db.chitietdonhangs.FirstOrDefault(c => c.idsanpham == id);
+            update.soluong = soluong;
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
         public ActionResult Delete(int id) {
             Database db = new Database();

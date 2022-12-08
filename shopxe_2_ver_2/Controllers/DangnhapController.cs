@@ -19,7 +19,7 @@ namespace shopxe_2.Controllers
         {
             Database db = new Database();
             
-            if (new kiemtradangnhap().kiemtra(model.email) == true) {
+            if (new kiemtradangnhap().kiemtra(model.email) == true && model.email!=null) {
                 if (String.IsNullOrEmpty(model.ten) && String.IsNullOrEmpty(model.sodt.ToString()))
                 {
                     Session["user"] = db.users.FirstOrDefault(c => c.email == model.email);
@@ -29,21 +29,8 @@ namespace shopxe_2.Controllers
 
                     if (String.IsNullOrEmpty(model.ten))
                     {
-
                         ViewBag.err = "Không được để trống dữ liệu";
                         return View();
-                    } else if(String.IsNullOrEmpty(model.email)){
-                        foreach (var i in db.admins)
-                        {
-                            if (i.ten.ToLower() == model.ten.ToLower())
-                            {
-                                if (i.pass == model.sodt.ToString())
-                                {
-                                    Session["ad"] = i;
-                                    return RedirectToAction("Index", "Quanlyxe", new { area = "admin" });
-                                }
-                            }
-                        }
                     }
                     else
                     if(model.ten.Length > 10){
@@ -66,6 +53,17 @@ namespace shopxe_2.Controllers
             }
             if (String.IsNullOrEmpty(model.email) || String.IsNullOrEmpty(model.ten))
             {
+                foreach (var i in db.admins)
+                {
+                    if (i.ten.ToLower() == model.ten.ToLower())
+                    {
+                        if (i.pass == model.sodt.ToString())
+                        {
+                            Session["ad"] = i;
+                            return RedirectToAction("Index", "Quanlyxe", new { area = "admin" });
+                        }
+                    }
+                }
                 ViewBag.err = "Không được để trống dữ liệu";
                return View();
             }

@@ -14,33 +14,37 @@
 }
 
 <div class="card"><h1>Kết quả tìm kiếm sản phẩm</h1></div>
-<div class="card">
-    @if (Model.Count() > 0)
-    {
+<div class="card" id="ketqua"></div>
 
-        foreach (var i in Model)
+<div class="card" id="card">
+    
+        @if (Model.Count() > 0)
         {
-            <div class="card__item">
-                <div class="img">
-                    <img src="@i.imgurl_1" alt="">
+
+            foreach (var i in Model)
+            {
+                <div class="card__item">
+                    <div class="img">
+                        <img src="@i.imgurl_1" alt="">
+                    </div>
+                    <div class="name">
+                        <p>@i.ten</p>
+                        <a href="~/Chitiet/?id=@i.id"></a>
+                    </div>
+                    <div class="gia">
+                        <p>@i.gia</p>
+                    </div>
+                    <div class="danhgia">
+                        <p>@i.danhgia/10&#10025;</p>
+                    </div>
                 </div>
-                <div class="name">
-                    <p>@i.ten</p>
-                    <a href="~/Chitiet/?id=@i.id"></a>
-                </div>
-                <div class="gia">
-                    <p>@i.gia</p>
-                </div>
-                <div class="danhgia">
-                    <p>@i.danhgia/10&#10025;</p>
-                </div>
-            </div>
+            }
         }
-    }
-    else
-    {
-        <p>không tìm thấy sản phẩm</p>
-    }
+        else
+        {
+            <p>không tìm thấy sản phẩm</p>
+        }
+    
 </div>
 
 @section js{

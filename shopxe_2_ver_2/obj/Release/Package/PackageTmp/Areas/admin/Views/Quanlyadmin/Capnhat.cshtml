@@ -1,0 +1,25 @@
+﻿@model shopxe_2.Models.admin
+@{
+    ViewBag.Title = "Cập nhật admin xe mới";
+    Layout = "~/Areas/admin/Views/layout/layout.cshtml";
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
+}
+@section css{
+    <link rel="stylesheet" href="~/accect/css/them.css" />
+}
+<div class="create">
+    <form action="/admin/Quanlyadmin/Capnhat" class="create__item" method="post">
+        <input type="number" name="id"  style="visibility: hidden" value="@Model.id">
+        <input type="text" name="ten" value="@Model.ten">
+        <input type="text" name="pass" value="@Model.pass">
+        <select name="quyen_">
+            @foreach (var i in db.quyens)
+            {
+                <option value="@i.id">@i.ten</option>
+            }
+        </select>
+        <button type="submit">Cập nhật</button>
+        <p style="color:darkred">@ViewBag.err</p>
+    </form>
+</div>
+

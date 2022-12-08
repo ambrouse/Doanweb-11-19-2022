@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Thêm admin xe mới";
+    Layout = "~/Areas/admin/Views/layout/layout.cshtml";
+    shopxe_2.Models.Database db = new shopxe_2.Models.Database();
+}
+@section css{
+    <link rel="stylesheet" href="~/accect/css/them.css" />
+}
+<div class="create">
+    <form action="/admin/Quanlyadmin/Them" class="create__item" method="post">
+        <input type="text" name="ten" placeholder="Nhập tên">
+        <input type="text" name="pass" placeholder="Nhập pass">
+        <select name="quyen_">
+            @foreach(var i in db.quyens)
+            {
+                <option value="@i.id">@i.ten</option>
+            }
+        </select>
+        <button type="submit">Thêm</button>
+        <p style="color:darkred">@ViewBag.err</p>
+    </form>
+</div>
+

@@ -50,7 +50,7 @@
                 </div>
                 <div class="amount">
                     @{z++;}
-                    <input type="number" placeholder="1" value="1" name="soluong" id="soluong_@z" onchange=@Html.Raw("check_"+z+"()")>
+                    <input type="number" placeholder="1" value="@i.soluong" name="soluong" id="soluong_@z" onchange=textaj(@i.idsanpham)>
 
                 </div>
                 <div class="price">
@@ -66,34 +66,44 @@
     <hr />
     <h3 style="color:red;">NOTE : Quý khách có thể thêm số lượng sản phẩm tại giỏ hàng</h3>
 </div>
-@if (Model.Count() > 0)
-{
-    foreach (var i in Model.Where(c => c.iddonhang == x.id).ToList())
+<script>
+
+    var textaj = (id) => {
+        var soluong = document.getElementById("soluong_@z").value;
+        location.href = "/Giohang/update?id=" + id + "&soluong=" + soluong
+    }
+</script>
+@*@Html.Raw("check_"+z+"()"*@
+@*
+    @if (Model.Count() > 0)
+    {
+        foreach (var i in Model.Where(c => c.iddonhang == x.id).ToList())
+        {
+            <script>
+                  var check_@z = () => {
+                      if (document.getElementById("soluong_@z").value <= 0) {
+                          document.getElementById("soluong_@z").value = 1;
+                          alert("Xin chào @x.ten \nSố lượng phải lơn hơn 0 có vẻ bạn bị trược tay")
+                      }
+                  }
+            </script>
+            z--;
+        }
+        <script>
+        var thongbao = () => {
+                alert(" Xin chào @x.ten \nChúng tôi sẽ gửi mail chi tiết đơn hàng đến bạn bạn vui lòng kiểm tra lại mail\nChúng tôi sẽ liên hệ với bạn qua số điện thoại để trao đổi địa chỉ và xác nhận đơn hàng")
+            location.href = "/Giohang/index"
+        }
+        </script>
+
+    }
+    else
     {
         <script>
-              var check_@z = () => {
-                  if (document.getElementById("soluong_@z").value <= 0) {
-                      document.getElementById("soluong_@z").value = 1;
-                      alert("Xin chào @x.ten \nSố lượng phải lơn hơn 0 có vẻ bạn bị trược tay")
-                  }
-              }
+        var thongbao = () => {
+            alert("Quý khách @x.ten không có đơn hàng nào")
+            location.href = "/Giohang/index"
+        }
         </script>
-        z--;
     }
-    <script>
-    var thongbao = () => {
-            alert(" Xin chào @x.ten \nChúng tôi sẽ gửi mail chi tiết đơn hàng đến bạn bạn vui lòng kiểm tra lại mail\nChúng tôi sẽ liên hệ với bạn qua số điện thoại để trao đổi địa chỉ và xác nhận đơn hàng")
-        location.href = "/Giohang/index"
-    }
-    </script>
-
-}
-else
-{
-    <script>
-    var thongbao = () => {
-        alert("Quý khách @x.ten không có đơn hàng nào")
-        location.href = "/Giohang/index"
-    }
-    </script>
-}
+*@

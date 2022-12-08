@@ -16,16 +16,8 @@ namespace shopxe_2.Areas.admin.hamxuli
                 {
                     if (i.pass == pass)
                     {
-                        return i.id;
+                        return 1;
                     }
-                    else
-                    {
-                        return -1;
-                    }
-                }
-                else
-                {
-                    return -1;
                 }
             }
             return -1;
