@@ -13,7 +13,7 @@ namespace shopxe_2.Areas.admin.Controllers
     {
         // GET: admin/Quanlyloai
         [kiemtradangnhap(id = 1, id_2 = 5, id_3 = 6, id_4 = 7, id_5 = 8)]
-        public ActionResult Index(string name)
+        public ActionResult Index()
         {
             Database db = new Database();
                 return View(db.loais.ToList());

@@ -23,33 +23,17 @@ namespace shopxe_2.Areas.admin.hamxuli
             if (user != null)
             {
                 Database db = new Database();
-                int count = db.phanquyens.Where(c => c.iduser == user.id && (c.idquyen == id|| c.idquyen == id_2|| c.idquyen == id_3|| c.idquyen == id_4 || c.idquyen==id_5)).Count();
+                int count = db.phanquyens.Where(c => c.iduser == user.id && 
+                (c.idquyen == id|| c.idquyen == id_2|| c.idquyen == id_3|| c.idquyen == id_4 || c.idquyen==id_5)).Count();
                 if (count > 0)
-                {
-                    return;
-                }
+                {return;}
                 else
-                {
-                    context.Result = new RedirectToRouteResult(new RouteValueDictionary
-                    (new
-                    {
+                {context.Result = new RedirectToRouteResult(new RouteValueDictionary(new{
                         Controller = "Quanlyadmin",
-                        action = "khongcoquyen",
-                        areas = "admin"
-                    }));
-                }
-            }
-            else
-            {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary
-                    (new
-                    {
-                        Controller = "Dangnhapadmin",
-                        action = "Index",
-                        areas = "admin"
-                    }));
-            }
-
+                        action = "khongcoquyen",areas = "admin"}));}}else{
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new{
+                        Controller = "Dangnhap",
+                        action = "Index",areas = "admin"}));}
         }
     }
 }

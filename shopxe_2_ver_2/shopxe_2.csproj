@@ -195,7 +195,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
-    <Compile Include="Areas\admin\Controllers\DangnhapadminController.cs" />
     <Compile Include="Areas\admin\Controllers\QuanlyadminController.cs" />
     <Compile Include="Areas\admin\Controllers\QuanlyhangController.cs" />
     <Compile Include="Areas\admin\Controllers\QuanlyloaiController.cs" />

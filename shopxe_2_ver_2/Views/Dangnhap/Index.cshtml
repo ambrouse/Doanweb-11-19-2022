@@ -5,7 +5,7 @@
     ViewBag.description = "Cho thuê xe ";
     Layout = "~/Views/layout/layout.cshtml";
 }
-}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,21 +18,24 @@
 </head>
 <body>
     <form method="post">
-
         <div class="accout">
             <div class="accout__item">
                 <p>-Nhập thông tin để mua hàng</p>
                 <p>-Nếu bạn đã từng mua hàng thì chỉ cần nhập mail</p>
-                <p>-Nếu bạn đã từng mua hàng nhưng muốn đổi số điện thoại hay tên thì phải nhập đầy đủ thông tin</p>
+                <p>-Nếu bạn đã từng mua hàng nhưng muốn 
+                đổi số điện thoại hay tên thì phải nhập đầy đủ thông tin</p>
             </div>
             <div class="accout__item">
-                <input type="text" placeholder="Vui lòng Nhập đúng gmail" name="email" value="@ViewBag.email">
+                <input type="text" placeholder="Vui lòng Nhập đúng gmail" 
+                       name="email" value="@ViewBag.email">
             </div>
             <div class="accout__item">
-                <input type="number" placeholder="Vui lòng nhập đúng số điện thoại" name="sodt" value="@ViewBag.sodt">
+                <input type="number" placeholder="Vui lòng nhập đúng số điện thoại" 
+                       name="sodt" value="@ViewBag.sodt">
             </div>
             <div class="accout__item">
-                <input type="text" placeholder="nhập tên" name="ten" value="@ViewBag.ten">
+                <input type="text" placeholder="nhập tên" 
+                       name="ten" value="@ViewBag.ten">
             </div>
             <div class="accout__item">
                 <button type="submit">Đồng ý</button>

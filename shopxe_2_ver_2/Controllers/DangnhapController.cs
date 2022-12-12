@@ -18,7 +18,6 @@ namespace shopxe_2.Controllers
         public ActionResult Index(user model)
         {
             Database db = new Database();
-            
             if (new kiemtradangnhap().kiemtra(model.email) == true && model.email!=null) {
                 if (String.IsNullOrEmpty(model.ten) && String.IsNullOrEmpty(model.sodt.ToString()))
                 {
@@ -26,7 +25,6 @@ namespace shopxe_2.Controllers
                     return RedirectToAction("index", "Danhsachxe");
                 }
                 else {
-
                     if (String.IsNullOrEmpty(model.ten))
                     {
                         ViewBag.err = "Không được để trống dữ liệu";
@@ -53,19 +51,24 @@ namespace shopxe_2.Controllers
             }
             if (String.IsNullOrEmpty(model.email) || String.IsNullOrEmpty(model.ten))
             {
-                foreach (var i in db.admins)
+                if (model.ten != null)
                 {
-                    if (i.ten.ToLower() == model.ten.ToLower())
+                    foreach (var i in db.admins)
                     {
-                        if (i.pass == model.sodt.ToString())
+                        if (i.ten.ToLower() == model.ten.ToLower())
                         {
-                            Session["ad"] = i;
-                            return RedirectToAction("Index", "Quanlyxe", new { area = "admin" });
+                            if (i.pass == model.sodt.ToString())
+                            {
+                                Session["ad"] = i;
+                                return RedirectToAction("Index", "Quanlyxe", new { area = "admin" });
+                            }
                         }
                     }
                 }
-                ViewBag.err = "Không được để trống dữ liệu";
-               return View();
+                else {
+                    ViewBag.err = "Không được để trống dữ liệu";
+                    return View();
+                }
             }
             if (model.ten.Length > 10)
             {
