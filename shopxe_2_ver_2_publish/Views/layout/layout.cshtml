@@ -43,7 +43,7 @@
     <div class="header_section">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:flex;">
-                <div class="logo" style="height:60px;"><a href="~/Trangchu/Index"><img src="~/imgxe/lo_go_xe.png" style="width:100%;height:100%;object-fit:cover;" /></a></div>
+                <div class="logo" style="height:60px;"><a href="~/Trang-chu"><img src="~/imgxe/lo_go_xe.png" style="width:100%;height:100%;object-fit:cover;" /></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,8 +55,8 @@
                                     MENU
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="~/Giohang/index">Giỏ hàng</a>
-                                    <a class="dropdown-item" href="~/Danhsachxe/Danhsachxemoinhat">Danh sách xe</a>
+                                    <a class="dropdown-item" href="~/Trang-chu/Gio-hang">Giỏ hàng</a>
+                                    <a class="dropdown-item" href="~/Trang-chu/Danh-sach-xe">Danh sách xe</a>
                                 </div>
                             </div>
                         </li>
@@ -66,10 +66,10 @@
                                     LOGIN
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "/Dangnhap/index":"/Giohang/index")">
+                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "Trang-chu/Dangnhap-Dangky":"Trang-chu/Gio-hang")">
                                         @Html.Raw(user == null ? "Đăng ký" : user.ten)
                                     </a>
-                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "/Dangnhap/index":"/Giohang/index")">
+                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "Trang-chu/Dangnhap-Dangky":"Trang-chu/Gio-hang")">
                                         @Html.Raw(user == null ? "Đăng nhập" : "")
                                     </a>
                                 </div>
@@ -83,7 +83,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @foreach (var i in db.loais)
                                     {
-                                        <a class="dropdown-item" href="~/Danhsachxe/Danhsachxeloai?loai=@i.id">@i.ten</a>
+                                        <a class="dropdown-item" href="~/Trang-chu/Danh-sach-xe-loai?loai=@i.id">@i.ten</a>
 
                                     }
                                 </div>
@@ -93,7 +93,7 @@
                     <form class="form-inline my-2 my-lg-0">
                         <h1 class="call_text">Gọi tôi tại : 0792260788</h1>
                     </form>
-                    <form class="form-inline my-2 my-lg-0" action="/Danhsachxe/timkiem">
+                    <form class="form-inline my-2 my-lg-0" action="~/Trang-chu/Tim-kiem">
                         <input type="text" placeholder="nhap ten xe" name="name">
                         <button type="submit" style="background-color: rgba(0, 0, 0, 0.308);padding: 0px 20px;">search</button>
                     </form>

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\nguyen_tat_thanh\Doanweb-11-19-2022\shopxe_2_ver_2_publish</_PublishTargetUrl>
-    <History>True|2022-12-08T06:44:54.5589022Z;</History>
+    <History>True|2022-12-12T15:45:58.1171199Z;True|2022-12-08T13:44:54.5589022+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -442,10 +442,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
     <File Include="bin/shopxe_2.dll">
-      <publishTime>12/11/2022 17:14:20</publishTime>
+      <publishTime>12/12/2022 22:45:43</publishTime>
     </File>
     <File Include="bin/shopxe_2.pdb">
-      <publishTime>12/11/2022 17:14:20</publishTime>
+      <publishTime>12/12/2022 22:45:43</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>07/19/2017 17:01:28</publishTime>
@@ -547,22 +547,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/21/2022 09:10:46</publishTime>
     </File>
     <File Include="Views/Chitiet/Index.cshtml">
-      <publishTime>12/06/2022 13:14:44</publishTime>
+      <publishTime>12/12/2022 22:39:04</publishTime>
     </File>
     <File Include="Views/Dangnhap/Index.cshtml">
-      <publishTime>11/28/2022 21:40:32</publishTime>
+      <publishTime>12/12/2022 14:36:32</publishTime>
     </File>
     <File Include="Views/Danhsachxe/Danhsachxemoinhat.cshtml">
-      <publishTime>12/06/2022 20:16:26</publishTime>
+      <publishTime>12/12/2022 22:31:06</publishTime>
     </File>
     <File Include="Views/Danhsachxe/timkiem.cshtml">
-      <publishTime>12/06/2022 21:34:19</publishTime>
+      <publishTime>12/12/2022 22:31:15</publishTime>
     </File>
     <File Include="Views/Giohang/Index.cshtml">
-      <publishTime>12/06/2022 20:56:55</publishTime>
+      <publishTime>12/12/2022 22:27:19</publishTime>
     </File>
     <File Include="Views/layout/layout.cshtml">
-      <publishTime>12/06/2022 21:04:02</publishTime>
+      <publishTime>12/12/2022 22:20:00</publishTime>
     </File>
     <File Include="Views/Mail/Index.cshtml">
       <publishTime>11/19/2022 10:57:17</publishTime>

@@ -68,9 +68,9 @@
         <form action="/Chitiet/index" method="post">
             <input style="display:none;" type="number" value="@Model.id" name="id"/>
             <span>Hãy đánh giá sản phẩm của chúng tôi trên thang điểm 10 :</span>
-            <input type="number" value="10" onchange="nhap()" id="danhgia"name="danhgia"/>
+            <input type="number" placeholder="Chấm điểm nhé!!!" onchange="nhap()" id="danhgia"name="danhgia"/>
             <span>Hãy gửi vài lời về sản phẩm của chúng toi nhé :</span>
-            <input type="text" value="text" id="chatvalue" name="chat" />
+            <input type="text" placeholder="Nói vài lời nhé!!" id="chatvalue" name="chat" />
             <button onclick="checkchat()">send</button>
 
         </form>
