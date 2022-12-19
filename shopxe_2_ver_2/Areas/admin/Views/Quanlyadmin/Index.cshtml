@@ -31,7 +31,7 @@
             <a href="~/admin/Quanlyadmin/Capnhat?id=@i.id">Sửa</a>
             <a href="#" onclick="deleteid(@i.id)">Xóa</a>
             <p>@foreach(var item in db.phanquyens.Where(c => c.iduser == i.id)) {
-                <span>@item.idquyen</span>
+                <span>@db.quyens.Find(item.idquyen).ten</span>
             }</p>
         </div>
     }

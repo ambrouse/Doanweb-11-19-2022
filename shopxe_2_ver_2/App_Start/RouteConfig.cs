@@ -24,6 +24,8 @@ namespace shopxe_2
                url: "Trang-chu/Dangnhap-Dangky",
                defaults: new { controller = "Dangnhap", action = "Index", id = UrlParameter.Optional }
            );
+            
+            
 
             routes.MapRoute(
                name: "danhsach",

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using shopxe_2.Models.hamxuly;
 using shopxe_2.Models;
+using System.Web.Security;
+
 namespace shopxe_2.Controllers
 {
     public class DangnhapController : Controller
@@ -18,7 +20,7 @@ namespace shopxe_2.Controllers
         public ActionResult Index(user model)
         {
             Database db = new Database();
-            if (new kiemtradangnhap().kiemtra(model.email) == true && model.email!=null) {
+            if (new kiemtradangnhap().kiemtra(model.email) == true && model.email != null) {
                 if (String.IsNullOrEmpty(model.ten) && String.IsNullOrEmpty(model.sodt.ToString()))
                 {
                     Session["user"] = db.users.FirstOrDefault(c => c.email == model.email);
@@ -31,11 +33,11 @@ namespace shopxe_2.Controllers
                         return View();
                     }
                     else
-                    if(model.ten.Length > 10){
+                    if (model.ten.Length > 10) {
                         ViewBag.err = "Tên tối đa 10 kí tự";
                         return View();
-                    }else
-                    if (model.sodt.ToString().Length< 9|| model.sodt.ToString().Length>=10)
+                    } else
+                    if (model.sodt.ToString().Length < 9 || model.sodt.ToString().Length >= 10)
                     {
                         ViewBag.err = "Số điện thoại sai định dạng";
                         return View();
@@ -43,7 +45,7 @@ namespace shopxe_2.Controllers
                     var x = db.users.FirstOrDefault(c => c.email == model.email);
                     x.ten = model.ten;
                     x.sodt = model.sodt;
-                    x.email=model.email;
+                    x.email = model.email;
                     Session["user"] = db.users.FirstOrDefault(c => c.email == model.email);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Danhsachxe");
@@ -85,6 +87,19 @@ namespace shopxe_2.Controllers
             Session["user"] = db.users.Find(model.id);
             db.SaveChanges();
             return RedirectToAction("Index", "Danhsachxe");
+        }
+        public ActionResult Dangxuat()
+        {
+            if (Session["ad"] != null)
+            {
+                Session.Remove("ad");
+                FormsAuthentication.SignOut();
+            }
+            else {
+                Session.Remove("user");
+                FormsAuthentication.SignOut();
+            }
+            return RedirectToAction("index");
         }
 
     }
