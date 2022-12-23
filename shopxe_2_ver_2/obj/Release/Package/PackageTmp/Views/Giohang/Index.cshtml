@@ -50,7 +50,7 @@
                 </div>
                 <div class="amount">
                     @{z++;}
-                    <input type="number" placeholder="1" value="@i.soluong" name="soluong" id="soluong_@z" onchange=textaj(@i.idsanpham)>
+                    <input type="number" placeholder="1" value="@i.soluong" name="soluong" id="soluong_@z" onchange=textaj(@i.idsanpham,@z)>
 
                 </div>
                 <div class="price">
@@ -67,9 +67,9 @@
     <h3 style="color:red;">NOTE : Quý khách có thể thêm số lượng sản phẩm tại giỏ hàng</h3>
 </div>
 <script>
-
-    var textaj = (id) => {
-        var soluong = document.getElementById("soluong_@z").value;
+    function textaj(var id, var soluong_) {
+        var s = "soluong_"+z
+        var soluong = document.getElementById(s).value;
         location.href = "/Giohang/update?id=" + id + "&soluong=" + soluong
     }
 </script>

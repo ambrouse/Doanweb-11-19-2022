@@ -66,12 +66,26 @@
                                     LOGIN
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "Trang-chu/Dangnhap-Dangky":"Trang-chu/Gio-hang")">
-                                        @Html.Raw(user == null ? "Đăng ký" : user.ten)
-                                    </a>
-                                    <a class="dropdown-item" href="@Html.Raw(user == null ? "Trang-chu/Dangnhap-Dangky":"Trang-chu/Gio-hang")">
-                                        @Html.Raw(user == null ? "Đăng nhập" : "")
-                                    </a>
+                                    @if (user == null)
+                                    {
+
+                                        <a class="dropdown-item" href="~/Trang-chu/Dangnhap-Dangky">
+                                            Đăng ký
+                                        </a>
+                                        <a class="dropdown-item" href="~/Trang-chu/Dangnhap-Dangky">
+                                            Đăng Nhập
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item" href="~/Trang-chu/Gio-hang">
+                                            @user.ten
+                                        </a>
+                                        <a class="dropdown-item" href="~/Dangnhap/Dangxuat">
+                                            Đăng Xuất
+                                        </a>
+                                    }
+
                                 </div>
                             </div>
                         </li>
